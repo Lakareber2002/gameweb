@@ -1,0 +1,571 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+    padding-top: 80px; /* Space for navbar */
+    position: relative;
+    background: linear-gradient(135deg, #e65fa7, #e58bbd, #fbc2eb, #a18cd1, #fbc2eb);
+    background-size: 400% 400%; /* Smooth transition effect */
+    animation: gradient-animation 8s ease infinite;
+  }
+  
+  /* Animation for Gradient */
+  @keyframes gradient-animation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  
+  /* Navbar Container */
+.navbar {
+    background: linear-gradient(135deg, #dc75ab, #e797c0); 
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Logo Styling */
+  .navbar .logo img {
+    width: 70px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+  }
+  
+  .navbar .logo img:hover {
+    transform: scale(1.1); /* Slight zoom effect on hover */
+  }
+  
+  /* Navigation Links Styling */
+  .navbar .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+  }
+  
+  .navbar .nav-links li {
+    position: relative;
+  }
+  
+  .navbar .nav-links a {
+    color: white;
+    font-size: 1.5rem;
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Fun, kid-friendly font */
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #ff9a9e;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  /* Hover Effects for Links */
+  .navbar .nav-links a:hover {
+    background-color: #ce57d8; /* Darker pink on hover */
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Animated Underline on Hover */
+  .navbar .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: #ff6b81;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+  
+  .navbar .nav-links a:hover::after {
+    transform: scaleX(1);
+  }
+  
+  /* Mobile-Friendly Adjustment */
+  @media screen and (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .navbar .nav-links {
+      flex-direction: column;
+      gap: 20px;
+    }
+  
+    .navbar .nav-links a {
+      font-size: 1.2rem;
+      padding: 15px 25px;
+    }
+  }
+  
+
+  
+  /* Game Container */
+  .game-container {
+    background-color: #fef6e4;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Image Container */
+  .image-container img {
+    max-width: 300px;
+    margin-bottom: 20px;
+    border: 5px solid #fddde6;
+    border-radius: 15px;
+    animation: bounce 2s infinite;
+  }
+  
+  /* Buttons Styling */
+  .options {
+    margin: 20px 0;
+  }
+  
+  .option {
+    background-color: #ffd1dc;
+    color: #ff4081;
+    font-size: 1.5rem;
+    padding: 15px 25px;
+    margin: 10px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s;
+  }
+  
+  .option:hover {
+    background-color: #ff80ab;
+    transform: scale(1.1) rotate(-3deg);
+  }
+  
+  /* Celebrate Bravo */
+#bravo {
+    font-size: 1.5rem;
+    color: #DA70D6; /* Medium orchid */
+    font-weight: bold;
+    display: none;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  /* Incorrect Message */
+  .incorrect-message {
+    font-size: 2rem;
+    font-family: 'Comic Sans MS', cursive;
+    color: red;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+  }
+  
+  /* Celebration Section */
+#celebration {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: none;
+    z-index: 10;
+    pointer-events: none;
+  }
+  
+  .glitter {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #FFD700;
+    animation: glitterAnimation 1s infinite;
+  }
+  
+  @keyframes glitterAnimation {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-200px) scale(0);
+      opacity: 0;
+    }
+  }
+  
+  /* Keyframe Animations */
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Score Display */
+  #score {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #FF6347; /* Tomato red for attention */
+    margin-bottom: 20px;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  /* End Game Message */
+  #end-game-message {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    color: #fff;
+    background-color: #1E90FF; /* Blue background */
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 100%;
+    margin: 20px;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+  }
+  
+  #end-game-message span {
+    font-size: 2rem;
+    color: #FFD700; /* Gold color for the score */
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+    padding-top: 80px; /* Space for navbar */
+    position: relative;
+    background: linear-gradient(135deg, #e65fa7, #e58bbd, #fbc2eb, #a18cd1, #fbc2eb);
+    background-size: 400% 400%; /* Smooth transition effect */
+    animation: gradient-animation 8s ease infinite;
+  }
+  
+  /* Animation for Gradient */
+  @keyframes gradient-animation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  /* Navbar Container */
+  .navbar {
+    background: linear-gradient(135deg, #dc75ab, #e797c0); 
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Logo Styling */
+  .navbar .logo img {
+    width: 70px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+  }
+  
+  .navbar .logo img:hover {
+    transform: scale(1.1); /* Slight zoom effect on hover */
+  }
+  
+  /* Navigation Links Styling */
+  .navbar .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+  }
+  
+  .navbar .nav-links li {
+    position: relative;
+  }
+  
+  .navbar .nav-links a {
+    color: white;
+    font-size: 1.5rem;
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Fun, kid-friendly font */
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #ff9a9e;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  /* Hover Effects for Links */
+  .navbar .nav-links a:hover {
+    background-color: #ce57d8; /* Darker pink on hover */
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Animated Underline on Hover */
+  .navbar .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: #ff6b81;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+  
+  .navbar .nav-links a:hover::after {
+    transform: scaleX(1);
+  }
+  
+  /* Mobile-Friendly Adjustment */
+  @media screen and (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .navbar .nav-links {
+      flex-direction: column;
+      gap: 20px;
+    }
+  
+    .navbar .nav-links a {
+      font-size: 1.2rem;
+      padding: 15px 25px;
+    }
+  }
+  
+  .game-container {
+    background-color: #fef6e4;
+    padding: 10px 20px; /* Reduce padding to decrease height */
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    max-height: 500px; /* Limit the maximum height */
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    margin-top: 50px; /* Add space below the navbar */
+    overflow-y: auto; /* Add scroll if content overflows */
+  }
+  
+  
+  /* Image Container */
+  .image-container img {
+    max-width: 300px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    border: 5px solid #fddde6;
+    border-radius: 15px;
+    animation: bounce 2s infinite;
+  }
+  
+  /* Buttons Styling */
+  .options {
+    margin: 20px 0;
+  }
+  
+  .option {
+    background-color: #ffd1dc;
+    color: #ff4081;
+    font-size: 1.5rem;
+    padding: 15px 25px;
+    margin: 10px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s;
+  }
+  
+  .option:hover {
+    background-color: #ff80ab;
+    transform: scale(1.1) rotate(-3deg);
+  }
+  
+  /* Celebrate Bravo */
+  #bravo {
+    font-size: 2rem;
+    font-family: 'Comic Sans MS', cursive;
+    color: rgb(209, 41, 239);
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+  }
+  
+  /* Incorrect Message */
+  .incorrect-message {
+    font-size: 2rem;
+    font-family: 'Comic Sans MS', cursive;
+    color: red;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+  }
+  
+  /* Celebration Section */
+  #celebration {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: none;
+    z-index: 10;
+    pointer-events: none;
+  }
+  
+  .glitter {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #FFD700;
+    animation: glitterAnimation 1s infinite;
+  }
+  
+  @keyframes glitterAnimation {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-200px) scale(0);
+      opacity: 0;
+    }
+  }
+  
+  /* Keyframe Animations */
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Score Display */
+  #score {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #FF6347; /* Tomato red for attention */
+    margin-bottom: 20px;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  /* End Game Message */
+  #end-game-message {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    color: #fff;
+    background-color: #1E90FF; /* Blue background */
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 100%;
+    margin: 20px;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+  }
+  
+  #end-game-message span {
+    font-size: 2rem;
+    color: #FFD700; /* Gold color for the score */
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  

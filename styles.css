@@ -1,0 +1,290 @@
+/* styles.css */
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    color: #ffffff;
+  }
+  
+  /* Navbar Container */
+.navbar {
+    background: linear-gradient(135deg, #dc75ab, #e797c0); 
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Logo Styling */
+  .navbar .logo img {
+    width: 70px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+  }
+  
+  .navbar .logo img:hover {
+    transform: scale(1.1); /* Slight zoom effect on hover */
+  }
+  
+  /* Navigation Links Styling */
+  .navbar .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+  }
+  
+  .navbar .nav-links li {
+    position: relative;
+  }
+  
+  .navbar .nav-links a {
+    color: white;
+    font-size: 1.5rem;
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Fun, kid-friendly font */
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #dc75ab;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  /* Hover Effects for Links */
+  .navbar .nav-links a:hover {
+    background-color: #ce57d8; /* Darker pink on hover */
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Animated Underline on Hover */
+  .navbar .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: #ff6b81;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+  
+  .navbar .nav-links a:hover::after {
+    transform: scaleX(1);
+  }
+  
+  /* Mobile-Friendly Adjustment */
+  @media screen and (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .navbar .nav-links {
+      flex-direction: column;
+      gap: 20px;
+    }
+  
+    .navbar .nav-links a {
+      font-size: 1.2rem;
+      padding: 15px 25px;
+    }
+  }
+  
+  .wave-container {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg, #cc64e7, #d4add9);
+    overflow: hidden;
+    text-align: center;
+  }
+  
+  .wave-container h1 {
+    font-size: 3rem;
+    z-index: 2;
+  }
+  
+  .wave-container p {
+    font-size: 1.5rem;
+    z-index: 2;
+  }
+  
+  /* Zigzag Wave Styles */
+  .wave {
+    position: absolute;
+    width: 150%;
+    height: 100px;
+    background: rgba(240, 196, 222, 0.5);
+    opacity: 0.7;
+    border-radius: 50%;
+    animation: zigzag 6s linear infinite;
+  }
+  
+  .wave1 {
+    animation-duration: 8s;
+    opacity: 0.8;
+    animation-delay: 0s;
+  }
+  
+  .wave2 {
+    animation-duration: 10s;
+    opacity: 0.6;
+    animation-delay: 2s;
+  }
+  
+  .wave3 {
+    animation-duration: 12s;
+    opacity: 0.4;
+    animation-delay: 4s;
+  }
+  
+  .wave4 {
+    animation-duration: 14s;
+    opacity: 0.2;
+    animation-delay: 6s;
+  }
+  
+  @keyframes zigzag {
+    0% {
+      transform: translate(0, -100px);
+    }
+    25% {
+      transform: translate(50px, 0);
+    }
+    50% {
+      transform: translate(-50px, 100px);
+    }
+    75% {
+      transform: translate(50px, 200px);
+    }
+    100% {
+      transform: translate(-50px, 300px);
+    }
+  }
+  
+  /* Styling for the title */
+.title {
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Fun, kid-friendly font */
+    font-size: 3rem; /* Large font size */
+    color: #ff6b81; /* Bright pink color */
+    text-align: center;
+    position: absolute; /* Positioned on top of the wave-container */
+    top: 10%; /* Adjusted to appear near the top of the wave-container */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center alignment */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Soft shadow */
+    z-index: 2; /* Ensures it stays above waves */
+    animation: fadeIn 2s ease-in-out; /* Fade-in effect */
+  }
+  
+  /* Fade-in keyframes */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+
+  /* Center Image Animation */
+.center-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3; /* Ensure it's above the waves */
+    animation: bounce-spin 4s ease-in-out infinite;
+  }
+  
+  .center-image img {
+    width: 250px;
+    height: auto;
+    border-radius: 50%; /* Optional: makes the image circular */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Bounce and Spin Animation */
+  @keyframes bounce-spin {
+    0% {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    25% {
+      transform: translate(-50%, -60%) rotate(90deg); /* Bounce up and spin */
+    }
+    50% {
+      transform: translate(-50%, -50%) rotate(180deg); /* Bounce back down */
+    }
+    75% {
+      transform: translate(-50%, -60%) rotate(270deg); /* Bounce up and spin */
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(360deg); /* Bounce back down */
+    }
+  }
+  
+  /* Get Started Button Styles */
+  .get-started {
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3; /* Ensure it's above the waves */
+  }
+  
+  .btn-get-started {
+    background-color: #dc75ab; /* Pink color */
+    color: #fff;
+    font-size: 1.5rem;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    animation: bounce 2s infinite;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-get-started:hover {
+    transform: scale(1.1); /* Slightly enlarge on hover */
+    background-color: #da79cb; /* Darker pink on hover */
+  }
+  
+  /* Button Bounce Animation */
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-15px); /* Moves the button upwards */
+    }
+  }
+  
+  /* Other existing styles (for waves, etc.) */
+  .wave-container {
+    margin-top: 60px;
+    position: relative;
+    height: 100vh;
+  }
+  
